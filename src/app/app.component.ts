@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+// Services
+import {MarcasService} from './services/marcas.service'
+
+// Components
+// import {MarcaComponent} from './marca/marca.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -41,7 +47,7 @@ export class AppComponent {
   myValue;
   editCompetidor(i):void{
     this.hideUpdate = false;
-    
+
     this.modelToUpdate.name = this.competidores[i].name;
     this.modelToUpdate.position = this.competidores[i].position;
     this.modelToUpdate.email = this.competidores[i].email;
@@ -61,5 +67,13 @@ export class AppComponent {
   // Close alert 
   closeAlert():void{
     this.msg = '';
+  }
+
+
+  // Services and other things
+  marcas: any;
+  constructor(private marcasService: MarcasService){
+    // console.log(JSON.stringify(marcasService.marcas.rows));
+    this.marcas = marcasService.marcas.rows;
   }
 }

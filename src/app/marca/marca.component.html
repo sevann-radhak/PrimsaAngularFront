@@ -1,0 +1,45 @@
+<h2>Prueba del módulo http</h2>
+
+
+
+
+
+<!-- https://www.youtube.com/watch?v=dluTt8yVovI&list=PLZ6WzumExa5WVS0O-oByYH9YYoRrqG8oh&index=50 -->
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped">
+                <thead>
+                    <th>ID</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let marca of marcas">
+                        <td>{{marca.id}}</td>
+                        <td>{{marca.value.marca}}</td>
+                        <td>{{marca.value.nombre}}</td>
+                        <td>
+                            <button (click)="deleteMarca(marca.id)" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <h3>Formulario agregar Marca</h3>
+            <div class="form-group">
+                <label for="controlCodigo">Código</label>
+                <input type="text" class="form-control" placeholder="Ingrese el Código" />
+            </div>
+
+            <div class="form-group">
+                <label for="controlNombre">Nombre</label>
+                <input type="text" class="form-control" placeholder="Ingrese el Nombre" />
+            </div>
+
+            <button (click)="addMarca()" class="btn btn-success">Agregar</button>
+        </div>
+    </div>
+</div>

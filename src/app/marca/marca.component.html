@@ -1,10 +1,3 @@
-<h2>Prueba del módulo http</h2>
-
-
-
-
-
-<!-- https://www.youtube.com/watch?v=dluTt8yVovI&list=PLZ6WzumExa5WVS0O-oByYH9YYoRrqG8oh&index=50 -->
 <div class="container">
     <div class="row">
         <div class="col-8">
@@ -17,29 +10,30 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let marca of marcas">
-                        <td>{{marca.id}}</td>
-                        <td>{{marca.value.marca}}</td>
-                        <td>{{marca.value.nombre}}</td>
+                        <td>{{marca.MarcaID}}</td>
+                        <td>{{marca.Codigo}}</td>
+                        <td>{{marca.Nombre}}</td>
                         <td>
-                            <button (click)="deleteMarca(marca.id)" class="btn btn-danger">Eliminar</button>
+                            <button (click)="deleteMarca(marca.MarcaID)" class="btn btn-danger">x</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
         <div class="col-4">
             <h3>Formulario agregar Marca</h3>
             <div class="form-group">
                 <label for="controlCodigo">Código</label>
-                <input type="text" class="form-control" placeholder="Ingrese el Código" />
+                <input type="text" [(ngModel)]="newMarca.Codigo" class="form-control" placeholder="Ingrese el Código" />
             </div>
 
             <div class="form-group">
                 <label for="controlNombre">Nombre</label>
-                <input type="text" class="form-control" placeholder="Ingrese el Nombre" />
+                <input type="text" [(ngModel)]="newMarca.Nombre" class="form-control" placeholder="Ingrese el Nombre" />
             </div>
 
-            <button (click)="addMarca()" class="btn btn-success">Agregar</button>
+            <button (click)="postMarca()" class="btn btn-success">Agregar</button>
         </div>
     </div>
 </div>

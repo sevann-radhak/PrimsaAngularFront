@@ -1,39 +1,51 @@
 <div class="container">
+    <div class="col-12 mb-4" style="text-align: center;">
+        <h3>Módulo de Marcas</h3>
+    </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
+
+            <!-- Form to add a new zone -->
+            <form [formGroup]="onCreateMarcaForm" (ngSubmit)="postMarca(onCreateMarcaForm.value)">
+                <div class="col-5" style="float: left;">
+                    <div class="form-group">
+                        <input formControlName="Codigo" type="text" class="form-control"
+                            placeholder="Ingrese el Código">
+                        <div *ngIf="onCreateMarcaForm.get('Codigo').hasError('required') &&  onCreateMarcaForm.get('Codigo').touched"
+                            class="text-danger" style="float: left">Campo obligatorio</div>
+                    </div>
+                </div>
+
+                <div class="col-5" style="float: left;">
+                    <div class="form-group">
+                        <input formControlName="Nombre" type="text" class="form-control" placeholder="Ingrese el Nombre">
+                        <div *ngIf="onCreateMarcaForm.get('Nombre').hasError('required') &&  onCreateMarcaForm.get('Nombre').touched"
+                            class="text-danger" style="float: left">Campo obligatorio</div>
+                    </div>
+                </div>
+
+                <div class="col-2" style="float: right;">
+                    <button [disabled]="onCreateMarcaForm.invalid" type="submit"
+                        class="btn btn-success btn-sm">Agregar</button>
+                </div>
+            </form>
+
             <table class="table table-striped">
                 <thead>
-                    <th>ID</th>
                     <th>Código</th>
                     <th>Nombre</th>
                     <th></th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let marca of marcas">
-                        <td>{{marca.MarcaID}}</td>
                         <td>{{marca.Codigo}}</td>
                         <td>{{marca.Nombre}}</td>
                         <td>
-                            <button (click)="deleteMarca(marca.MarcaID)" class="btn btn-danger">x</button>
+                            <button (click)="deleteMarca(marca.MarcaID)" class="btn btn-danger btn-sm">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-
-        <div class="col-4">
-            <h3>Formulario agregar Marca</h3>
-            <div class="form-group">
-                <label for="controlCodigo">Código</label>
-                <input type="text" [(ngModel)]="newMarca.Codigo" class="form-control" placeholder="Ingrese el Código" />
-            </div>
-
-            <div class="form-group">
-                <label for="controlNombre">Nombre</label>
-                <input type="text" [(ngModel)]="newMarca.Nombre" class="form-control" placeholder="Ingrese el Nombre" />
-            </div>
-
-            <button (click)="postMarca()" class="btn btn-success">Agregar</button>
         </div>
     </div>
 </div>

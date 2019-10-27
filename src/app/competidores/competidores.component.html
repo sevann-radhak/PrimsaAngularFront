@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="col-12 mb-4" style="text-align: center;">
+        <h3>Módulo de Competidores</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="col-12 mb-4">
+                <div class="col-12" style="float: right; text-align: right;">
+                    <button class="btn btn-success" routerLink="/add-competidor">Nuevo</button>
+                </div>
+
+                <br clear="all" />
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Calle</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Marcador</th>
+                    <th>Observar</th>
+                    <th>Marca</th>
+                    <th>Zona</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let competidor of competidores.slice().reverse()">
+                        <td>{{competidor.Codigo}}</td>
+                        <td>{{competidor.Nombre}}</td>
+                        <td>{{competidor.Calle}}</td>
+                        <td>{{competidor.Latitud}}</td>
+                        <td>{{competidor.Longitud}}</td>                        
+                        <td *ngIf="competidor.Marcador">Sí</td>
+                        <td *ngIf="!competidor.Marcador">No</td>            
+                        <td *ngIf="competidor.Observar">Sí</td>
+                        <td *ngIf="!competidor.Observar">No</td>
+                        <td>{{competidor.Marca.Nombre}}</td>
+                        <td>{{competidor.Zona.Name}}</td>
+                        <td>
+                            <!-- <button (click)="getMarca(marca)" id="{{marca.MarcaID}}" class="btn btn-primary">o</button> -->
+                            <button routerLink="/edit-competidor/{{competidor.CompetidorID}}" class="btn btn-primary btn-sm">o</button>
+                            <button (click)="deleteCompetidor(competidor.CompetidorID)"
+                                class="btn btn-danger btn-sm">x</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+</div>

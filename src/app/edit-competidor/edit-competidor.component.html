@@ -1,0 +1,112 @@
+<div class="col-12 mb-4" style="text-align: center;">
+    <h3>Editar Competidor</h3>
+</div>
+
+
+<!-- Form to add a new zone -->
+<form [formGroup]="onEditCompetidorForm" (ngSubmit)="putCompetidor(onEditCompetidorForm.value)">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="codigo">Código</label>
+            <input type="text" formControlName="Codigo"id="codigo" class="form-control"
+                value="{{competidor.Codigo}}" />
+            <div *ngIf="onEditCompetidorForm.get('Codigo').hasError('required') && onEditCompetidorForm.get('Codigo').touched"
+                class="text-danger" style="float: left">Campo obligatorio</div>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="Nombre" id="nombre" class="form-control"
+                value="{{competidor.Nombre}}" />
+            <div *ngIf="onEditCompetidorForm.get('Nombre').hasError('required') &&  onEditCompetidorForm.get('Nombre').touched"
+                class="text-danger" style="float: left">Campo obligatorio</div>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="calle">Calle</label>
+            <input type="text" formControlName="Calle" id="calle" class="form-control" value="{{competidor.Calle}}" />
+            <div *ngIf="onEditCompetidorForm.get('Calle').hasError('required') &&  onEditCompetidorForm.get('Calle').touched"
+                class="text-danger" style="float: left">Campo obligatorio</div>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="latitud">Latitud</label>
+            <input type="number" step="0.1" formControlName="Latitud" class="form-control" id="latitud"
+                value="{{competidor.Latitud}}" />
+            <div *ngIf="onEditCompetidorForm.get('Latitud').hasError('required') &&  onEditCompetidorForm.get('Latitud').touched"
+                class="text-danger" style="float: left">Campo obligatorio</div>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="longitud">Longitud</label>
+            <input type="number" step="0.1" formControlName="Longitud" class="form-control" id="longitud"
+                value="{{competidor.Longitud}}" />
+            <div *ngIf="onEditCompetidorForm.get('Longitud').hasError('required') &&  onEditCompetidorForm.get('Longitud').touched"
+                class="text-danger" style="float: left">Campo obligatorio</div>
+        </div>
+
+        <br clear="all">
+
+        <div class="custom-control custom-checkbox">
+            <div *ngIf="competidor.Marcador">
+                <input type="checkbox" class="custom-control-input" formControlName="Observar" id="observar"
+                    value="{{competidor.Observar}}" [checked]="'true'" />
+            </div>
+            <div *ngIf="!competidor.Marcador">
+                <p>falso</p>
+                    <input type="checkbox" class="custom-control-input" formControlName="Observar" id="observar"
+                        value="{{competidor.Observar}}" />
+                </div>
+            <label class="custom-control-label" for="observar">Observar</label>
+        </div>
+
+        <br clear="all">
+
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" formControlName="Marcador" id="marcador"
+                value="{{competidor.Marcador}}" />
+            <label class="custom-control-label" for="marcador">Marcador</label>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="zona">Marca</label>
+            <select class="form-control" formControlName="MarcaID" id="marca">
+                <option *ngFor="let marca of marcas" value="{{marca.MarcaID}}" [selected]="option === competidor.MarcaID">
+                    {{marca.Nombre}}</option>
+            </select>
+        </div>
+
+        <br clear="all">
+
+        <div class="form-group">
+            <label for="zona">Zona</label>
+            <select class="form-control" formControlName="ZonaID" id="zona">
+                <option *ngFor="let zona of zonas" value="{{zona.ZonaID}}" [selected]="option === competidor.ZonaID">{{zona.Name}}</option>
+            </select>
+            <div *ngIf="onEditCompetidorForm.get('ZonaID').hasError('required') &&  onEditCompetidorForm.get('ZonaID').touched"
+                class="text-danger" style="float: left">Debe seleccionar una Zona<br></div>
+        </div>
+
+        <br clear="all">
+
+        <div class="col-2" style="float: right;">
+            <!-- <button [disabled]="onEditCompetidorForm.invalid" type="submit"
+                class="btn btn-success btn-sm">Actualizar</button> -->
+
+            <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+        </div>
+    </div>
+</form>
+
+<br clear="all">
+<br clear="all">

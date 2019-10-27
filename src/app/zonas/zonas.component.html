@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="col-12 mb-4" style="text-align: center;"><h3>Módulo de Zonas</h3></div>
+    
+    <div class="row">
+        <div class="col-12">
+            
+            <!-- Form to add a new zone -->
+            <form [formGroup]="onCreateZoneForm" (ngSubmit)="postZone(onCreateZoneForm.value)">
+                <div class="col-5" style="float: left;">
+                    <div class="form-group">
+                        <input formControlName="Codigo" type="text" class="form-control"
+                            placeholder="Ingrese el Código">
+                        <div *ngIf="onCreateZoneForm.get('Codigo').hasError('required') &&  onCreateZoneForm.get('Codigo').touched"
+                            class="text-danger" style="float: left">Campo obligatorio</div>
+                    </div>
+                </div>
+
+                <div class="col-5" style="float: left;">
+                    <div class="form-group">
+                        <input formControlName="Name" type="text" class="form-control"
+                            placeholder="Ingrese el Nombre">
+                        <div *ngIf="onCreateZoneForm.get('Name').hasError('required') &&  onCreateZoneForm.get('Name').touched"
+                            class="text-danger" style="float: left">Campo obligatorio</div>
+                    </div>
+                </div>
+
+                <div class="col-2" style="float: right;">
+                    <button [disabled]="onCreateZoneForm.invalid" type="submit"
+                        class="btn btn-success btn-sm">Agregar</button>
+                </div>
+            </form>
+
+
+            <table class="table table-striped">
+                <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                    <!-- <th>
+                        <input type="text" [(ngModel)]="zona.Codigo" class="form-control"
+                            placeholder="Ingrese el Código" />
+                    </th>
+                    <th>
+                        <input type="text" [(ngModel)]="zona.Nombre" class="form-control"
+                            placeholder="Ingrese el Nombre" />
+                    </th>
+                    <th>
+                        <button (click)="addZona()" class="btn btn-success btn-sm" style="float: right;">Nuevo</button>
+                    </th> -->
+                </thead>
+                <tbody>
+
+                    <!-- <tr id="newItem1" style="display: none;">
+                        <td></td>
+                        <td><input type="text" [(ngModel)]="zona.Codigo" class="form-control"
+                                placeholder="Ingrese el Código" /></td>
+                        <td><input type="text" [(ngModel)]="zona.Name" class="form-control"
+                                placeholder="Ingrese el Nombre" /></td>
+                        <td><button (click)="postZona()" class="btn btn-success">Agregar</button></td>
+                    </tr>
+                    <tr id="newItem2" class="hidden">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr> -->
+                    <tr *ngFor="let zona of zonas">
+                        <app-zona [zona]="zona"></app-zona>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br />
+</div>

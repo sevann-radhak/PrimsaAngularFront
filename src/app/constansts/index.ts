@@ -1,1 +1,1 @@
-export const API_ENDPOINT = 'http://localhost:63357/api/MarcasAPI/';
+export const API_ENDPOINT = 'http://localhost:63357/api/';

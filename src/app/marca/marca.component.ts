@@ -1,92 +1,92 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
+// Forms
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 // Services
-import {MarcasService} from './../services/marcas.service'
+import { MarcasService } from './../services/marcas.service'
 
 @Component({
-  selector: 'app-marca',
+  selector: 'marca',
   templateUrl: './marca.component.html',
   styleUrls: ['./marca.component.css']
 })
+
 export class MarcaComponent implements OnInit {
 
+  // Form
+  onCreateMarcaForm: FormGroup
+
   // Constructor
-  constructor(private marcasService: MarcasService){
+  constructor(
+    private marcasService: MarcasService,
+    private _formBuilder: FormBuilder,
+    private router: Router) {
     this.getMarcas();
+    this.OnCreateMarcaForm();
   }
 
   // Object definitions
-  newMarca: any = {
-    Codigo: '',
-    Nombre: ''
-  };
+  // newMarca: any = {
+  //   Codigo: '',
+  //   Nombre: ''
+  // };
   marcas: any;
 
 
   ngOnInit() {
   }
 
+  // Create the form to add a new Zone
+  OnCreateMarcaForm(): void {
+    console.log('pasando por OnCreateMarcaForm');
+
+    this.onCreateMarcaForm = this._formBuilder.group({
+      Codigo: ['', Validators.required],
+      Nombre: ['', Validators.required]
+    });
+  }
+
   // Crud methods
-  // Add a new competidor
-  getMarcas():void{
+  // Get all marcas
+  getMarcas(): void {
     this.marcasService.getMarcas().subscribe(result => {
       this.marcas = result;
     },
-    error =>{
-      console.log(JSON.stringify(error));
-      
-    });
+      error => {
+        console.log(JSON.stringify(error));
+
+      });
     // this.competidores.push(this.model);
     // this.msg = 'Registro almacenado exitosamente';
   }
 
-  postMarca():void {
-    console.log(this.newMarca);
-    this.marcasService.postMarca(this.newMarca).subscribe(result => {
+  // Select a single marca
+  getMarca(marca: any): void {
+    this.router.navigate([`/marcas/${marca.MarcaID}`, marca]);
+  }
+
+  // POST: Add a new marca
+  postMarca(values: any): void {
+    console.log(values);
+    this.marcasService.postMarca(values).subscribe(result => {
+      this.onCreateMarcaForm.reset();
       this.getMarcas();
     },
-    error =>{
-      console.log(JSON.stringify(error));
-      
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
-  
-  // Delete a competidor
-  deleteMarca(id: string):void{
+
+  // DELETE: Delete a marca
+  deleteMarca(id: string): void {
     this.marcasService.deleteMarca(id).subscribe(result => {
       this.getMarcas();
     },
-    error => {
-      console.log(error);
-    });
-    
-    // var answer = confirm('¿Estás seguro de eliminar el registro?');
-    
-    // if(answer){
-    //   this.competidores.splice(i, 1);
-    //   this.msg = 'Registro eliminado exitosamente';
-    // }
+      error => {
+        console.log(error);
+      });
   }
-  
-  // Edit a competidor
-  // myValue;
-  // editCompetidor(i):void{
-  //   this.hideUpdate = false;
-
-  //   this.modelToUpdate.name = this.competidores[i].name;
-  //   this.modelToUpdate.position = this.competidores[i].position;
-  //   this.modelToUpdate.email = this.competidores[i].email;
-
-  //   this.myValue = i;
-  // }
-  
-  // // Update a competidor
-  // updateCompetidor():void{
-  //   let i = this.myValue;
-
-  //   this.competidores[i] = this.modelToUpdate;
-  //   this.modelToUpdate = {};
-  //   this.msg = 'Registro actualizado exitosamente';
-  // }
-
 }

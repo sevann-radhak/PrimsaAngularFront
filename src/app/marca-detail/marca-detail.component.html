@@ -1,0 +1,16 @@
+<!-- <td>{{marca.MarcaID}}</td>
+<td>{{marca.Codigo}}</td>
+<td>{{marca.Nombre}}</td>
+<td>
+    <button (click)="getMarca(marca)" id="{{marca.MarcaID}}" class="btn btn-primary">ver</button>
+    <button (click)="deleteMarca(marca.MarcaID)" class="btn btn-danger">x</button>
+</td> -->
+
+<div class="col-md-12 row">
+    <div class="col-md-4">{{marca.Codigo}}</div>
+    <div class="col-md-4">{{marca.Nombre}}</div>
+    <div class="col-md-4">
+        <button (click)="getMarca(marca)" id="{{marca.MarcaID}}" class="btn btn-primary">ver</button>
+        <button (click)="deleteMarca(marca.MarcaID)" class="btn btn-danger">x</button>
+    </div>
+</div>

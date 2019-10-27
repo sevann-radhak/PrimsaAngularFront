@@ -1,3 +1,5 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 .app{
     border-radius: 4px;
     margin-top: 20px;
